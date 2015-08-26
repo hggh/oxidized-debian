@@ -1,9 +1,11 @@
 [Unit]
 Description=Oxidized - Network Device Configuration Backup Tool
+ConditionPathExists=/etc/oxidized/config
 
 [Service]
 ExecStart=/usr/bin/oxidized
 User=_oxidized
+Group=_oxidized
 
 [Install]
 WantedBy=multi-user.target
