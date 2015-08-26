@@ -1,0 +1,36 @@
+Source: oxidized
+Section: ruby
+Priority: optional
+Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Uploaders: Jonas Genannt <genannt@debian.org>
+Build-Depends: debhelper (>= 9~),
+               gem2deb,
+               dh-systemd,
+               rake,
+               ruby-asetus,
+               ruby-net-ssh (>= 2.8),
+               ruby-rspec,
+               ruby-rugged (>= 0.21.4),
+               ruby-slop (>= 3.5)
+Standards-Version: 3.9.6
+Vcs-Git: git://anonscm.debian.org/pkg-ruby-extras/ruby-oxidized.git
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-ruby-extras/ruby-oxidized.git
+Homepage: https://github.com/ytti/oxidized
+Testsuite: autopkgtest-pkg-ruby
+XS-Ruby-Versions: all
+
+Package: oxidized
+Architecture: all
+XB-Ruby-Versions: ${ruby:Versions}
+Depends: ruby | ruby-interpreter,
+         ruby-asetus,
+         ruby-net-ssh (>= 2.8),
+         ruby-rugged (>= 0.21.4),
+         ruby-slop (>= 3.5),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: network device configuration backup tool
+ backup your network devices (router, switches) to a file or git based backend.
+ Oxidized supports many network decives and could be easily extended
+ to new supported devices. Oxidized also monitors router inventory,
+ it's a rancid replacement.
