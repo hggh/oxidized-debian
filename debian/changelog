@@ -1,4 +1,4 @@
-ruby-oxidized (0.7.2-1) UNRELEASED; urgency=medium
+oxidized (0.7.2-1) UNRELEASED; urgency=medium
 
   * Initial release (Closes: #797000)
 
