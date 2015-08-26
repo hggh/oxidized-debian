@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+
+# FIX ME, killing oxidized needs -9
+trap("INT") { exit } # sinatra will otherwise steal this from us
+
+begin
+  require 'oxidized/cli'
+  Oxidized::CLI.new.run
+rescue => error
+  warn "#{error}"
+  raise if Oxidized::CFG.debug
+end
