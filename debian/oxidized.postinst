@@ -1,0 +1,20 @@
+#!/bin/sh
+
+set -e
+
+DIRS="/var/lib/oxidized"
+
+if [ "$1" = configure ]; then
+  if ! getent passwd _oxidized > /dev/null; then
+    adduser --system --quiet --home /var/lib/oxidized --no-create-home \
+      --shell /bin/false --force-badname --group --gecos "Oxidized User" _oxidized
+  fi
+
+  for i in $DIRS; do
+    if ! dpkg-statoverride --list $i >/dev/null 2>&1; then
+      dpkg-statoverride --update --add _oxidized _oxidized 0755 $i
+    fi
+  done
+fi
+
+#DEBHELPER#

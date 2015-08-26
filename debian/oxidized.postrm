@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -e
+
+DIRS="/var/lib/oxidized"
+
+
+if [ "$1" = purge ]; then
+  for i in $DIRS; do
+    if dpkg-statoverride --list $i >/dev/null 2>&1; then
+      dpkg-statoverride --remove $i
+    fi
+  done
+
+fi
+
+#DEBHELPER#
