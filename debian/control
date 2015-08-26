@@ -4,8 +4,8 @@ Priority: optional
 Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
 Uploaders: Jonas Genannt <genannt@debian.org>
 Build-Depends: debhelper (>= 9~),
-               gem2deb,
                dh-systemd,
+               gem2deb,
                rake,
                ruby-asetus,
                ruby-net-ssh (>= 2.8),
@@ -22,7 +22,8 @@ XS-Ruby-Versions: all
 Package: oxidized
 Architecture: all
 XB-Ruby-Versions: ${ruby:Versions}
-Depends: ruby | ruby-interpreter,
+Depends: adduser,
+         ruby | ruby-interpreter,
          ruby-asetus,
          ruby-net-ssh (>= 2.8),
          ruby-rugged (>= 0.21.4),
