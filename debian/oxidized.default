@@ -1,0 +1,4 @@
+# oxidized: change to yes to start it on boot
+# only for sysv init script for systemd use:
+#   systemctl enable|disable oxidized.service
+ENABLED=no
