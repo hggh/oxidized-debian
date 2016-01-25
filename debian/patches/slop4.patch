@@ -1,0 +1,36 @@
+Author: Jonas Genannt <genannt@debian.org>
+Description: make oxidized work with Slop4
+Forwarded: not-needed
+
+diff --git a/lib/oxidized/cli.rb b/lib/oxidized/cli.rb
+index d35eab3..b3f4061 100644
+--- a/lib/oxidized/cli.rb
++++ b/lib/oxidized/cli.rb
+@@ -40,11 +40,23 @@ module Oxidized
+     end
+ 
+     def parse_opts
+-      opts = Slop.new(:help=>true) do
+-        on 'd', 'debug', 'turn on debugging'
+-        on 'daemonize',  'Daemonize/fork the process'
++      if Slop::VERSION.to_i >= 4
++        opts = Slop.parse do |o|
++          o.bool '-d', '--debug', 'turn on debugging'
++          o.bool '--daemonize', 'Daemonize/fork the process'
++          o.on '-h', '--help' do
++            puts o
++            exit
++          end
++        end
++        return [ opts.to_hash, opts ]
++      else
++        opts = Slop.new(:help=>true) do
++          on 'd', 'debug', 'turn on debugging'
++          on 'daemonize',  'Daemonize/fork the process'
++        end
++        [opts.parse!, opts]
+       end
+-      [opts.parse!, opts]
+     end
+ 
+     def pidfile
